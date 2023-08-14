@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+table {
+    margin: auto;
+}
+
+table,
+tr,
+td,
+th {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 10px;
+}
+
+.search {
+    margin-bottom: 30px;
+}
