@@ -1,7 +1,10 @@
+// defines a Node.js module that handles interactions with a database, 
+//specifically related to managing products.
 const connection = require("./db");
 const path = require("path");
 const csv = require("csvtojson");
 
+//initializes the database by performing
 const initDb = (req, res) => {
     const sql = `DROP DATABASE IF EXISTS orel`;
     connection.query(sql, (err, mysqlres) => {
@@ -40,6 +43,7 @@ const initDb = (req, res) => {
     });
 };
 
+// reads data from a CSV file named "products.csv
 const insertProducts = (req, res) => {
     let sql = `INSERT INTO orel.products SET ?`;
     const csvFilePath = path.join(__dirname, "products.csv");
@@ -70,6 +74,7 @@ const insertProducts = (req, res) => {
         });
 };
 
+// retrieves all products from the "products" table using a SQL
 const getProducts = function (req, res) {
     const sql = `SELECT * FROM orel.products`;
     connection.query(sql, (err, data, mysqlre) => {
@@ -81,6 +86,7 @@ const getProducts = function (req, res) {
     });
 };
 
+// retrieves products from the "products" table based on a search query
 const searchProducts = function (req, res) {
     const sql = `SELECT * FROM orel.products WHERE title LIKE '%${req.query.q}%'`;
     connection.query(sql, (err, data, mysqlre) => {
@@ -92,6 +98,8 @@ const searchProducts = function (req, res) {
     });
 };
 
+//exports the defined functions initDb, getProducts, and searchProducts, making them accessible 
+//to other parts of the application that require this module.
 module.exports = {
     initDb,
     getProducts,

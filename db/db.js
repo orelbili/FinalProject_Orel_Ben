@@ -1,3 +1,4 @@
+//sets up a connection to a MySQL database using the mysql module
 const mysql = require("mysql");
 const dbConfig = require("./db.config");
 
