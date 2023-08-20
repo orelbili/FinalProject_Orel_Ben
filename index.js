@@ -16,9 +16,14 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views/index.html"));
 });
 
+app.get("/add-product", (req, res) => {
+    res.sendFile(path.join(__dirname, "views/add-product.html"));
+});
+
 app.get("/initDb", crud.initDb);
 app.get("/getProducts", crud.getProducts);
 app.get("/searchProducts", crud.searchProducts);
+app.post("/addProduct", crud.addProduct);
 
 app.listen(port, () => {
     console.log("server is running on port: " + port);

@@ -1,4 +1,4 @@
-// defines a Node.js module that handles interactions with a database, 
+// defines a Node.js module that handles interactions with a database,
 //specifically related to managing products.
 const connection = require("./db");
 const path = require("path");
@@ -98,10 +98,40 @@ const searchProducts = function (req, res) {
     });
 };
 
-//exports the defined functions initDb, getProducts, and searchProducts, making them accessible 
+const addProduct = function (req, res) {
+    if (!req.body) {
+        res.status(400).send({
+            err: "body is missing",
+        });
+    }
+
+    const { title, description, image, price } = req.body;
+    const sql = `INSERT INTO orel.products(title, description, image, price) VALUES('${title}', '${description}', '${image}', ${price})`;
+
+    const newProduct = {
+        title,
+        description,
+        image,
+        price: +price,
+    };
+
+    connection.query(sql, newProduct, (err, mysqlres) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({ err });
+        }
+        const id = mysqlres.insertId;
+        console.log(`Created new product successfully, id: ${id}`);
+        newProduct.id = id;
+        res.status(200).json(newProduct);
+    });
+};
+
+//exports the defined functions initDb, getProducts, and searchProducts, making them accessible
 //to other parts of the application that require this module.
 module.exports = {
     initDb,
     getProducts,
     searchProducts,
+    addProduct,
 };

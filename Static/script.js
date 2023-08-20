@@ -1,8 +1,40 @@
 const tbody = document.getElementById("tbody");
 const search = document.getElementById("search");
-search.addEventListener("input", (event) => {
-    searchProducts(search.value);
-});
+const addProductForm = document.getElementById("add-product-form");
+
+if (addProductForm) {
+    addProductForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const image = document.getElementById("image").value;
+        const price = document.getElementById("price").value;
+
+        fetch(`/addProduct`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title,
+                description,
+                image,
+                price,
+            }),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                window.location.href = "/";
+            });
+    });
+}
+
+if (search) {
+    search.addEventListener("input", (event) => {
+        searchProducts(search.value);
+    });
+}
 
 let dollarUS = Intl.NumberFormat("en-US", {
     style: "currency",
@@ -59,4 +91,8 @@ function loadProducts() {
                 }
             }
         });
+}
+
+function addProduct() {
+    window.location.href = "/add-product";
 }

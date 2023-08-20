@@ -30,3 +30,30 @@ th {
 .search {
     margin-bottom: 30px;
 }
+
+#addButton {
+    margin-bottom: 30px;
+}
+
+#add-product-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column;
+    gap: 10px;
+    width: 400px;
+    margin: 30px auto;
+}
+
+.form-input {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2fr;
+    text-align: left;
+}
+
+#add-product-form input[type="submit"] {
+    margin: 30px auto;
+    width: 100%;
+    cursor: pointer;
+}
