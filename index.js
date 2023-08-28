@@ -8,7 +8,7 @@ const crud = require("./db/db.crud");
 
 const port = 3000;
 
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "Static")));
 app.set("Views", path.join(__dirname, "Views"));
 
 app.use(bodyParser.json());
