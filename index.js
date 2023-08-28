@@ -1,3 +1,5 @@
+//create a basic web server that serves static files and handles CRUD 
+//(Create, Read, Update, Delete) operations related to a database.
 const express = require("express");
 const app = express();
 const path = require("path");
