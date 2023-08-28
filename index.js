@@ -9,17 +9,17 @@ const crud = require("./db/db.crud");
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, "static")));
-app.set("views", path.join(__dirname, "views"));
+app.set("Views", path.join(__dirname, "Views"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "views/index.html"));
+    res.sendFile(path.join(__dirname, "Views/index.html"));
 });
 
 app.get("/add-product", (req, res) => {
-    res.sendFile(path.join(__dirname, "views/add-product.html"));
+    res.sendFile(path.join(__dirname, "Views/add-product.html"));
 });
 
 app.get("/initDb", crud.initDb);
